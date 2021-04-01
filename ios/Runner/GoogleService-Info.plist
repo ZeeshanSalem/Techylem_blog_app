@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>563676343991-gc9g7d6beketq3rbovgt8oo3pasjdgip.apps.googleusercontent.com</string>
+	<string>742798123086-0mac2mabmdkhqivhq0vkq4sqrk941425.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.563676343991-gc9g7d6beketq3rbovgt8oo3pasjdgip</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>563676343991-hfqk47rf8rmmu5pblj97k3t61t0sg29r.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.742798123086-0mac2mabmdkhqivhq0vkq4sqrk941425</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBCwhZn9KVRM4qlvu7GHaf325dx1YOZ1-0</string>
+	<string>AIzaSyC4gyYmLwlQksA5ECYW0CQMPZokl4walqI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>563676343991</string>
+	<string>742798123086</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.antonx</string>
 	<key>PROJECT_ID</key>
-	<string>antonx</string>
+	<string>techylem-blog-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>antonx.appspot.com</string>
+	<string>techylem-blog-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:563676343991:ios:a384dadaac254755ca6732</string>
+	<string>1:742798123086:ios:96e4b393e8dfac16e2e31f</string>
 </dict>
 </plist>

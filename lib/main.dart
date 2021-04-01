@@ -1,5 +1,6 @@
 import 'package:antonx/ui/locator.dart';
 import 'package:antonx/ui/screens/registration_auth/sign_up/sign_up_screen.dart';
+import 'package:antonx/ui/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUpScreen(),
+      home: SplashScreen(),
     );
   }
 }

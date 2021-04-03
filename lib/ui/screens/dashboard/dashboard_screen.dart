@@ -1,8 +1,10 @@
 import 'package:antonx/core/constant/colors.dart';
 import 'package:antonx/core/constant/strings.dart';
 import 'package:antonx/core/constant/text_style.dart';
+import 'package:antonx/ui/screens/blog/add_edit_blog_screen.dart';
 import 'package:antonx/ui/screens/dashboard/dashboard_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -24,7 +26,7 @@ class DashboardScreen extends StatelessWidget {
                 itemBuilder: (context, index) => BlogTile()),
             
             floatingActionButton: FloatingActionButton(
-              onPressed: (){},
+              onPressed: () => Get.to(()=> AddOrEditBlogScreen()),
               tooltip: "Add Blog",
               backgroundColor: primaryColor,
               child: Icon(Icons.add, color: Colors.white,size: 25,),

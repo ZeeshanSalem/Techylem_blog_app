@@ -15,7 +15,7 @@ class Blog {
 
   Blog({this.imageUrl, this.content, this.creatorId, this.publishedOn, this.heading, this.blogId, this.imagePath}){
    this.publishedOn = Timestamp.now();
-   this.creatorId = locator<AuthService>().appUser.id ?? "";
+//   this.creatorId = locator<AuthService>().appUser.id ?? "";
   }
 
   Blog.fromJson(Map<String, dynamic> json, id) {

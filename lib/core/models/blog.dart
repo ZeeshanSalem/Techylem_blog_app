@@ -8,22 +8,21 @@ class Blog {
   String imageUrl;
   String heading;
   String content;
-  String creatorId;
+  String publisherId;
   String blogId;
   File imagePath;
   Timestamp publishedOn;
+  String publishedBy;
 
-  Blog({this.imageUrl, this.content, this.creatorId, this.publishedOn, this.heading, this.blogId, this.imagePath}){
-   this.publishedOn = Timestamp.now();
-//   this.creatorId = locator<AuthService>().appUser.id ?? "";
-  }
+  Blog({this.imageUrl, this.content, this.publisherId, this.publishedOn, this.heading, this.blogId, this.imagePath});
 
   Blog.fromJson(Map<String, dynamic> json, id) {
     imageUrl = json['imageUrl'];
     heading = json['heading'];
     content = json['content'];
-    creatorId = json['creatorId'];
+    publisherId = json['publisherId'];
     publishedOn = json['publishedOn'];
+    publishedBy = json['publishedBy'];
     this.blogId = id;
   }
 
@@ -32,8 +31,9 @@ class Blog {
     data['imageUrl'] = this.imageUrl;
     data['heading'] = this.heading;
     data['content'] = this.content;
-    data['creatorId'] = this.creatorId;
+    data['publisherId'] = this.publisherId;
     data['publishedOn'] = this.publishedOn;
+    data['publishedBy'] = this.publishedBy;
     return data;
   }
 }

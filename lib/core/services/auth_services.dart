@@ -20,7 +20,7 @@ class AuthService {
     user = _auth.currentUser;
     if (user != null) {
       isLogin = true;
-//      patient = await _dbService.getPatient(user.uid);
+      appUser = await _dbService.getUser(user.uid);
     } else {
       isLogin = false;
     }

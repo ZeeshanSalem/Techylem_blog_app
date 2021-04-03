@@ -8,14 +8,20 @@ class InputTextFormField extends StatelessWidget {
   final Function validation;
   final TextEditingController controller;
   final Function onChanged;
-  InputTextFormField({this.hintText, this.isPasswordActive = false, this.validation, this.controller, this.onChanged});
+  final int maxLength;
+  final int maxLine;
+  InputTextFormField({
+    this.hintText, this.isPasswordActive = false, this.validation, this.controller, this.onChanged, this.maxLength, this.maxLine = 1});
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: maxLength,
+      maxLines: maxLine,
       controller: this.controller ?? TextEditingController(),
       validator: validation,
       obscureText: isPasswordActive,
       onChanged: onChanged,
+      onSaved: onChanged,
       cursorColor: primaryColor,
       decoration: InputDecoration(
 //                      labelText: "Name",

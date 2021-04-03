@@ -1,4 +1,6 @@
+import 'package:antonx/core/constant/strings.dart';
 import 'package:antonx/ui/locator.dart';
+import 'package:antonx/ui/screens/dashboard/dashboard_screen.dart';
 import 'package:antonx/ui/screens/registration_auth/sign_up/sign_up_screen.dart';
 import 'package:antonx/ui/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: appTitle,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,

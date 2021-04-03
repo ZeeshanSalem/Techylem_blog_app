@@ -20,7 +20,7 @@ class AuthService {
     user = _auth.currentUser;
     if (user != null) {
       isLogin = true;
-//      patient = await _dbService.getPatient(user.uid);
+      appUser = await _dbService.getUser(user.uid);
     } else {
       isLogin = false;
     }
@@ -50,6 +50,7 @@ class AuthService {
 
         await _dbService.registerUser(user);
         this.appUser = user;
+
       }
     } catch (e) {
       print('Exception @sighupWithEmailPassword: $e');
@@ -104,8 +105,7 @@ class AuthService {
 
 
 
-  Future<void> logout({id}) async {
-//    if (id != null) FirebaseDatabaseService().updateFcmToken(null, id);
+  Future<void> logout() async {
     await _auth.signOut();
     this.isLogin = false;
     this.appUser = null;
@@ -113,11 +113,14 @@ class AuthService {
   }
 
 //  @override
-  void resetPassword(String email) {
+   Future<CustomAuthResult> resetPassword(String email) async{
     try {
-      _auth.sendPasswordResetEmail(email: email);
+      await _auth.sendPasswordResetEmail(email: email);
     } catch (e) {
+      customAuthResult.status = false;
+      customAuthResult.errorMessage = "Incorrect Email/ User may be deleted/ Badly Formatted ";
       print('Exception @FirebaseAuthService/resetPassword: $e');
     }
+    return customAuthResult;
   }
 }

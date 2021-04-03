@@ -39,6 +39,10 @@ dependencies:
   get: ^3.24.0
   get_it: ^5.0.6
   flutter_facebook_auth: ^2.0.1
+  firebase_storage: ^4.0.1
+  image_picker: ^0.6.7+12
+  intl: ^0.16.1
+
 
 
 dev_dependencies:

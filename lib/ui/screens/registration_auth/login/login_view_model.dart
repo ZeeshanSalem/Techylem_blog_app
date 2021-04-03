@@ -12,7 +12,6 @@ import '../../../locator.dart';
 class LoginViewModel extends BaseViewModel{
   AppUser appUser = AppUser();
   final _authService = locator<AuthService>();
-  final _dbService = DatabaseService();
   CustomAuthResult authResult;
 
   ///
@@ -23,16 +22,17 @@ class LoginViewModel extends BaseViewModel{
     setState(ViewState.busy);
     authResult = await _authService.loginWithEmailPassword(
         email: appUser.email, password: appUser.password);
-    if (authResult.status) {
-//      final newToken = await FirebaseMessaging().getToken();
-//      _dbService.updateFcmToken(newToken, authResult.user.uid);
-//      FirebaseMessaging().subscribeToTopic('students');
-      /// if true, login success
-      ///      final token = await FirebaseMessaging().getToken();
-      ///      _dbService.updateFcmToken(token, authResult.user.uid);
-    }
     setState(ViewState.idle);
   }
 
+  resetPassword(email) async{
+   setState(ViewState.busy);
+   try {
+     authResult = await _authService.resetPassword(email);
+   }catch(e,s){
+     print("resetPassword Exception $e");
+   }
+   setState(ViewState.idle);
+  }
 
 }

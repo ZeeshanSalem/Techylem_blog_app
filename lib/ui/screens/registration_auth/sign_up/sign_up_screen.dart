@@ -118,7 +118,7 @@ class SignUpScreen extends StatelessWidget {
                               if(_formKey.currentState.validate()){
                                 await model.createAccount();
                                 if(model.authResult.status){
-                                  Get.to(DashboardScreen());
+                                  Get.offAll(() =>DashboardScreen());
                                 } else{
                                   showDialog(
                                     context: context,

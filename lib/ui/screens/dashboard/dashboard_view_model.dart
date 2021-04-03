@@ -32,7 +32,7 @@ class DashboardViewModel extends BaseViewModel{
         allBlogs = [];
         for(int i = 0 ; i < event.docs.length; i++){
           allBlogs.add(Blog.fromJson(event.docs[i].data(), event.docs[i].id));
-          print(allBlogs[i].toJson());
+          notifyListeners();
         }
       });
     } catch(e,s){

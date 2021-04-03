@@ -1,6 +1,8 @@
 import 'package:antonx/core/constant/colors.dart';
 import 'package:antonx/core/constant/strings.dart';
 import 'package:antonx/core/constant/text_style.dart';
+import 'package:antonx/core/enums/view_state.dart';
+import 'package:antonx/ui/custom_widget/blog_tile.dart';
 import 'package:antonx/ui/screens/blog/add_edit_blog_screen.dart';
 import 'package:antonx/ui/screens/dashboard/dashboard_view_model.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +20,15 @@ class DashboardScreen extends StatelessWidget {
           child: Scaffold(
             backgroundColor: backgroundColor,
             
-            body: ListView.separated(
+            body: model.state == ViewState.busy ? Center(child: CircularProgressIndicator()) :
+            model.allBlogs.length < 1 ?
+                _messageTile()
+                :ListView.separated(
               separatorBuilder: (context, index) => SizedBox(height: 10,),
               shrinkWrap: true,
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 40),
-                itemCount: 20,
-                itemBuilder: (context, index) => BlogTile()),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 90),
+                itemCount: model.allBlogs.length,
+                itemBuilder: (context, index) => BlogTile(blog: model.allBlogs[index],)),
             
             floatingActionButton: FloatingActionButton(
               onPressed: () => Get.to(()=> AddOrEditBlogScreen()),
@@ -36,60 +41,20 @@ class DashboardScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-class BlogTile extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  Widget _messageTile(){
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+      margin: EdgeInsets.symmetric(horizontal: 15, vertical: 40),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-
-          FadeInImage(
-              height: 100,
-              width: double.infinity,
-              placeholder: AssetImage("${assetPath}google_icon.png"),
-              image: AssetImage("${assetPath}blog.jpg"),
-          ),
-
-          //          ? FadeInImage(
-//                                          width: double.infinity,
-//                                          height: 200,
-//                                          placeholder: AssetImage(
-//                                              "assets/static_assets/geans.png"),
-//                                          image: AssetImage(
-//                                              "assets/static_assets/geans.png"),
-//                                          fit: BoxFit.cover,
-//                                        )
-//                                      : FadeInImage(
-//                                          width: double.infinity,
-//                                          height: 200,
-//                                          placeholder: AssetImage(
-//                                              "assets/static_assets/geans.png"),
-//                                          image: NetworkImage(
-//                                              model.product.imageUrl),
-//                                          fit: BoxFit.cover,
-//
-
-          SizedBox(height: 20,),
-
-          Text("Blog Heading", style: headingTextStyle.copyWith(fontSize: 14),),
-          SizedBox(height: 10,),
-
-          Text("I am Assala kbciasc ac98 ,msnciuabmc scn8 3333 iudcamc yam cksncoisac asd,cnoiasdca"
-              "vaksjcadsjbciaskm cksanciaskcmn asc"
-              "cnsdakjcnkadsncasdjckasdvbuydfvbsv iaosu asmcasdic asd da asd isa as".substring(0, 100) + "...",
-            
-            style: subHeadingTextStyle.copyWith(fontSize: 12),),
-
-        ],
+      child: Text("Ops, Blog found Kindly Add Your own Blog",
+        style: subHeadingTextStyle1.copyWith(color: redColor),
       ),
     );
   }
 }
+

@@ -5,6 +5,7 @@ import 'package:antonx/ui/screens/registration_auth/sign_up/sign_up_screen.dart'
 import 'package:antonx/ui/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() async{
@@ -15,10 +16,15 @@ void main() async{
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
+    /// For to mood off landscape
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return GetMaterialApp(
       title: appTitle,
       theme: ThemeData(

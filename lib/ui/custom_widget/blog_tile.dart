@@ -11,7 +11,8 @@ import 'package:get/get.dart';
 
 class BlogTile extends StatefulWidget {
   final Blog blog;
-  BlogTile({this.blog});
+  final myUid;
+  BlogTile({this.blog, this.myUid});
 
   @override
   _BlogTileState createState() => _BlogTileState();
@@ -21,7 +22,6 @@ class _BlogTileState extends State<BlogTile> {
    String halfText;
    bool isReadFullContent = false;
    bool isEqual;
-   final myUid = locator<AuthService>().appUser.id ?? "";
 
    @override
   void initState() {
@@ -135,7 +135,7 @@ class _BlogTileState extends State<BlogTile> {
           ///
          Align(
            alignment: Alignment.topRight,
-           child:  myUid == widget.blog.publisherId ?
+           child: widget.myUid == widget.blog.publisherId ?
            IconButton(
                icon: Container(
                  height: 40,

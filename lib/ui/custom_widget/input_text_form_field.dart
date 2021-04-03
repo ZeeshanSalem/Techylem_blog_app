@@ -21,6 +21,7 @@ class InputTextFormField extends StatelessWidget {
       validator: validation,
       obscureText: isPasswordActive,
       onChanged: onChanged,
+      onSaved: onChanged,
       cursorColor: primaryColor,
       decoration: InputDecoration(
 //                      labelText: "Name",

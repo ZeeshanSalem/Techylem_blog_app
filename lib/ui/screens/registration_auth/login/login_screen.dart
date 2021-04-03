@@ -2,6 +2,7 @@ import 'package:antonx/core/constant/colors.dart';
 import 'package:antonx/core/constant/text_style.dart';
 import 'package:antonx/core/enums/view_state.dart';
 import 'package:antonx/ui/custom_widget/auth_message.dart';
+import 'package:antonx/ui/custom_widget/dialogs/email_verfication_dialog.dart';
 import 'package:antonx/ui/custom_widget/input_text_form_field.dart';
 import 'package:antonx/ui/custom_widget/rectanguler_button.dart';
 import 'package:antonx/ui/screens/dashboard/dashboard_screen.dart';
@@ -26,37 +27,46 @@ class LoginScreen extends StatelessWidget {
           child: SafeArea(
             child: Scaffold(
               backgroundColor: Colors.white,
+
               ///
               /// Body Start From Here
               ///
               body: SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(25, 65, 25, 28),
-
                   child: Form(
                     key: _formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          "Welcome Back 👋️‍",
+                          style: headingTextStyle,
+                        ),
 
-                        Text("Welcome Back 👋️‍", style: headingTextStyle,),
+                        SizedBox(
+                          height: 9,
+                        ),
 
-                        SizedBox(height: 9,),
-
-                        Text("We are happy to see you again.\nLogin to proceed.",
+                        Text(
+                          "We are happy to see you again.\nLogin to proceed.",
                           style: subHeadingTextStyle.copyWith(
                             height: 1.2,
                             fontSize: 16,
-                          ),),
+                          ),
+                        ),
 
-                        SizedBox(height: 45,),
+                        SizedBox(
+                          height: 45,
+                        ),
 
                         ///
                         /// Email Text Field
                         ///
                         InputTextFormField(
                           hintText: "Email",
-                          controller: TextEditingController(text: model.appUser.email),
+                          controller:
+                              TextEditingController(text: model.appUser.email),
                           validation: (String val) {
                             if (val == null || val.length < 1)
                               return 'Please enter your email';
@@ -68,7 +78,9 @@ class LoginScreen extends StatelessWidget {
                           },
                         ),
 
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
 
                         ///
                         /// Password Text Field
@@ -76,7 +88,8 @@ class LoginScreen extends StatelessWidget {
                         InputTextFormField(
                           hintText: "Password",
                           isPasswordActive: true,
-                          controller: TextEditingController(text: model.appUser.password),
+                          controller: TextEditingController(
+                              text: model.appUser.password),
                           validation: (String val) {
                             if (val == null || val.length < 6)
                               return 'Min Password length = 6 characters';
@@ -88,7 +101,34 @@ class LoginScreen extends StatelessWidget {
                           },
                         ),
 
-                        SizedBox(height: 144,),
+                        SizedBox(
+                          height: 20,
+                        ),
+
+                        /// Forget Password
+                        ///
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: FlatButton(
+                            onPressed: () async {
+                              String email = await Get.dialog(EmailDialog());
+                              if (email != null) {
+//                                print(email);
+                                model.resetPassword(email);
+
+                              }
+                            },
+                            child: Text(
+                              "Forget Password",
+                              style:
+                                  buttonTextStyle.copyWith(color: primaryColor, fontSize: 15),
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 144,
+                        ),
 
                         ///
                         /// Registration Button
@@ -97,12 +137,12 @@ class LoginScreen extends StatelessWidget {
                           height: 50,
                           width: double.infinity,
                           child: RectangularButton(
-                            onPressed: () async{
-                              if(_formKey.currentState.validate()){
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
                                 await model.loginWithEmailPassword();
-                                if(model.authResult.status){
-                                  Get.to(DashboardScreen());
-                                } else{
+                                if (model.authResult.status) {
+                                  Get.offAll(()=>DashboardScreen());
+                                } else {
                                   showDialog(
                                     context: context,
                                     child: AlertDialog(
@@ -118,10 +158,10 @@ class LoginScreen extends StatelessWidget {
                             text: "Login",
                             textColor: Colors.white,
                             buttonColor: primaryColor,
-
                           ),
                         ),
 
+                        ///
 
                         ///
                         /// Or Text
@@ -129,12 +169,17 @@ class LoginScreen extends StatelessWidget {
                         Center(
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 15),
-                            child: Text("or",textAlign: TextAlign.center ,style: subHeadingTextStyle,),
+                            child: Text(
+                              "or",
+                              textAlign: TextAlign.center,
+                              style: subHeadingTextStyle,
+                            ),
                           ),
                         ),
 
-
-                        SizedBox(height: 30,),
+                        SizedBox(
+                          height: 30,
+                        ),
 
                         ///
                         /// Don't Have Account Button
@@ -146,13 +191,13 @@ class LoginScreen extends StatelessWidget {
                             authText: "Sign up",
                           ),
                         ),
-
                       ],
                     ),
                   ),
                 ),
               ),
-            ),),
+            ),
+          ),
         ),
       ),
     );

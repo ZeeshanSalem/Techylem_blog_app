@@ -2,16 +2,22 @@ import 'dart:async';
 
 import 'package:antonx/core/enums/view_state.dart';
 import 'package:antonx/core/models/blog.dart';
+import 'package:antonx/core/services/auth_services.dart';
 import 'package:antonx/core/services/database_services.dart';
 import 'package:antonx/core/view_models/base_view_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../locator.dart';
 
 class DashboardViewModel extends BaseViewModel{
   List<Blog> allBlogs = [];
   final _dbServices = DatabaseService();
   StreamSubscription streamSubscription;
+  final authService = locator<AuthService>();
+  String myUid;
 
   DashboardViewModel(){
+    myUid = authService.appUser.id;
     getAllBlog();
   }
 
@@ -41,6 +47,16 @@ class DashboardViewModel extends BaseViewModel{
     }
     setState(ViewState.idle);
 
+  }
+
+  ///
+  /// Logout
+  ///
+  logout() async{
+    setState(ViewState.busy);
+//    myUid = authService.appUser.id;
+    await authService.logout();
+    setState(ViewState.idle);
   }
 
   @override
